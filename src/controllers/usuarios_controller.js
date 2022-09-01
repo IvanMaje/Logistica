@@ -1,7 +1,7 @@
 class UsuarioController{
 
     mostrarFormularioRegistro(req, res){
-        res.render('usuarios/registrar_usuario.ejs', {titulo: 'Inicio', archivo_css: '/css/usuarios/registrar_usuarios.css', usuario: 'Lionel Messi', rol: 'administrador', datosRegistro: undefined, error :undefined})
+        res.render('usuarios/registrar_usuario.ejs', {titulo: 'Inicio', archivo_css: '/css/usuarios/registrar_usuarios.css', usuario: 'Agustin Virardi', rol: 'administrador', datosRegistro: undefined, error :undefined})
     }
 
     async RegistrarUsuario(req, res){
