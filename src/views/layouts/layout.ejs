@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/<%-archivo_css%>.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Poppins&display=swap" rel="stylesheet">
+    <title><%= titulo %></title>
+</head>
+<body>
+
+    <header class="cabecera">
+
+        <button class="ham_button" id="ham_button">
+            <span class="linea linea_1"></span>
+            <span class="linea linea_2"></span>
+            <span class="linea linea_3"></span>
+        </button>
+
+        <a href="" class="logo"><img class="logo_imagen" src="/img/logo.jpg" alt=""></a>
+    </header>
+
+    <nav class="menu menu_estado_inicial" id="menu">
+        <div class="menu_parte_superior menu_items"> <!-- Esta parte del menu la pueden ver todos sin inportar 
+                                        si estan autentificados o el rol -->
+            <a class="enlace" href=""> <img class="icono" src="/img/iconos/hogar.svg" alt=""> Menu</a>
+            <a class="enlace" href=""> <img class="icono" src="/img/iconos/nosotros.svg" alt=""> Quienes somos</a>
+            <a class="enlace" href=""> <img class="icono" src="/img/iconos/pregunta.svg" alt=""> Preguntas frecuentes</a>
+            <a class="enlace" href=""> <img class="icono" src="/img/iconos/dinero.svg" alt=""> Pedir cotizacion</a>
+
+        </div> 
+
+        <div class="menu_parte_inferior menu_items">
+
+            <% if(usuario == undefined){ %>  <!-- Si no hay un usuario autentificado le doy la opcion de logearse -->
+
+                <a class="enlace" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Iniciar sesion</a>
+
+            <% }else{ %>     <!-- Si esta autentificado va a mostrarle otras opciones segun su rol -->
+
+                <span class="nombre_usuario"> <img class="icono" src="/img/iconos/identificacion.svg" alt=""> <%= usuario %></span>
+
+                <% if(rol == 'cliente'){ %>
+
+                    
+                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Ver mis cargas</a>
+                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+
+                <% }else if(rol == 'empleado'){ %>
+                    
+                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
+                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes</a>
+                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+
+                <% }else if(rol == 'administrador'){ %>  <!-- Administrador tiene algunas opciones mas que empleado -->
+                            
+                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
+                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes / Empleados</a>
+                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/historial.svg" alt=""> Registro de auditoria</a>
+                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+
+                <% } %>
+
+                
+
+            <% } %>
+
+        </div>
+
+    </nav>
+    
+
+    <div class="contenido_estado_inicial" id="contenido">
+        <%- include('partials/mensaje.ejs') %>
+        <%- body %>
+
+    </div>
+    
+</body>
+<script src="/js/menu.js"></script>
+<script src="/js/tarjetas.js"></script>
+<script src="/js/carrusel.js"></script>
+</html>

@@ -1,0 +1,459 @@
+.imagen_containers{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url('/img/1.jpg');
+    background-size: cover;
+    background-position: bottom;
+    border: none;
+}
+
+.imagen_containers:before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    width: 150%;
+    left: 0px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(-6.5deg);
+    transform-origin: 0;
+  }
+  
+  .introduccion{
+    width: 100% ;
+    height: calc(100vh - 350px);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-end;
+    position: relative;
+    z-index: 20;
+  }
+
+  .introduccion .titulo{
+    font-size: 5rem;
+    color: var(--color4);
+    margin-right: 5%;
+  }
+
+  .introduccion .frase{
+    width: 80%;
+    font-size: 2rem;
+    text-align: end;
+    margin: 20px 0;
+    margin-right: 5%;
+  }
+
+
+  .introduccion div{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .introduccion div .mas{
+    font-size: 2rem;
+    margin-right: 10px;
+  }
+
+  .introduccion div .flecha{
+    width: 30px;
+    height: 30px;
+    background-color: var(--color2);
+    border-radius: 30px;
+    animation: movimientoFlecha 1s linear infinite;
+  }
+
+  @keyframes movimientoFlecha {
+
+    25%{
+        transform: translateY(-5px);
+    }
+
+    75%{
+       transform: translateY(5px);
+    }
+
+    100%{
+        transform: translateY(0px);
+     }
+}
+
+
+/*
+
+    Servicios
+
+*/
+
+.servicios{
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.servicios .servicios_section{
+  width: 600px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.servicios .servicios_section .servicio_titulo{
+  font-size: 2rem;
+  margin: auto;
+}
+
+.contenedor_carrusel{
+  width: 100%;
+  height: 85%;
+  overflow: hidden;
+  border-radius: 20px;
+  padding-bottom: 15px;
+}
+
+.servicios .servicios_section .carrusel{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-left: -100%;
+  padding: 10px 0;
+}
+
+.servicios .servicios_section .carrusel_transporte_nacional{
+  width: 500%;
+}
+
+.servicios .servicios_section .carrusel_transporte_internacional{
+  width: 600%;
+}
+
+.servicios .servicios_section .carrusel_depositos{
+  width: 300%;
+}
+
+.carrusel .carrusel_item{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color3);
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.carrusel .item_img{
+  border: none;
+  box-shadow: 0px 7px 10px rgb(43, 42, 42);
+}
+
+.carrusel .carrusel_item img{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.carrusel_item .titulo{
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.carrusel_item .info{
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.servicios .servicios_section .flecha_carrusel{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 187px;
+  border: none;
+  background-color: var(--color3);
+  border-radius: 20px;
+}
+
+.flecha_carrusel img{
+  width: 100%;
+  height: 100%;
+}
+
+.flecha_izquierda{
+  left: -30px;
+  transform: rotate(90deg);
+}
+
+.flecha_derecha{
+  right: -30px;
+  transform: rotate(-90deg);
+}
+
+
+/*
+
+    Otros servicios
+
+*/
+
+.otros_servicios_h4{
+  font-size: 3rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 100px 0 80px 0;
+}
+
+.otros_servicios{
+  margin: 30px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  
+}
+
+.otros_servicios .otros_servicios_section{
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+
+.otros_servicios .otros_servicios_section .tarjeta{
+  width: 100%;
+  height: 85%;
+  position: relative;
+}
+
+
+.tarjeta .cara{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: 1s;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.tarjeta .cara_frontal{
+  padding-top: 50px;
+  transform: perspective(600px) rotateY(0deg);
+  box-shadow: 0px 7px 10px rgb(43, 42, 42);
+}
+
+.tarjeta .cara_frontal .titulo_otros_servicios{
+  font-size: 2rem;
+  text-align: center;
+}
+
+.tarjeta .cara_frontal img{
+  width: 30px;
+  height: 30px;
+}
+
+
+.tarjeta .cara_trasera{
+  padding: 15px;
+  transform: perspective(600px) rotateY(180deg);
+  border: 2px solid var(--color2);
+}
+
+.cara_frontal_girada{
+  transform: perspective(600px) rotateY(180deg) !important;
+  
+}
+
+.cara_trasera_girada{
+  transform: perspective(600px) rotateY(360deg) !important;
+}
+
+
+
+.tarjeta .cara .girar{
+  position: absolute;
+  bottom: 10px;
+  color: var(--color3);
+  background-color: rgba(37, 37, 37, 0.705);
+  font-size: 2rem;
+  padding: 3px;
+  border: none;
+  border-radius: 10px;
+}
+
+.tarjeta .cara .girar:hover{
+  background-color: rgb(37, 37, 37);
+}
+
+.tarjeta .cara_trasera .info{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+/*
+  Media queries
+*/
+
+
+  @media (max-width: 1000px){
+
+
+    .imagen_containers{
+        height: calc(50vh - 50px);
+        background-position-x: right;
+    }
+    .imagen_containers:before{
+        height: 50vh;
+    }
+
+    .introduccion{
+        height: 50vh;
+    }
+
+    .introduccion .titulo{
+        font-size: 4rem;
+    }
+    
+    .introduccion .frase{
+        font-size: 2rem;
+    }
+
+  }
+
+  @media (min-width: 1000px) and (min-height: 750px){
+
+    .imagen_containers{
+        height: calc(50vh - 50px);
+        background-position-x: right;
+    }
+
+    .imagen_containers:before{
+        height: calc(50vh - 50px);
+    }
+
+    .introduccion{
+        height: 50vh;
+    }
+
+  }
+
+
+  @media (max-width: 780px){
+
+    .introduccion{
+        width: 100%;
+    }
+    
+    .introduccion .frase{
+        width: 90%;
+    }
+
+    .introduccion .titulo{
+        font-size: 3rem;
+    }
+    
+    .introduccion .frase{
+        font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 673px){
+    .servicios .servicios_section{
+      width: 85vw;
+      height: 80vw;
+    }
+
+    .servicios .servicios_section .flecha_carrusel{
+      bottom: calc(34vw - 12.5px);
+    }
+  }
+
+  @media (max-width: 520px){
+    .carrusel_item .info{
+      font-size: 1.2rem;
+    }
+
+    .flecha_izquierda{
+      left: -20px;
+    }
+    
+    .flecha_derecha{
+      right: -20px;
+    }
+  }
+
+
+  @media (max-width: 1000px) and (min-height: 850px){
+    .introduccion{
+        padding-top: 40px;  
+    }
+
+    .introduccion .frase{
+        font-size: 3rem;
+    }
+
+    .introduccion div .mas{
+        font-size: 3rem;
+        margin-right: 15px;
+      }
+    
+      .introduccion div .flecha{
+        width: 50px;
+        height: 50px;
+      }
+}
+
+@media (max-width: 700px) and (min-height: 850px){
+    .introduccion{
+        padding-top: 30px;  
+    }
+
+    .introduccion .frase{
+        font-size: 2.5rem;
+    }
+
+    .introduccion div .mas{
+        font-size: 2.5rem;
+        margin-right: 15px;
+      }
+    
+      .introduccion div .flecha{
+        width: 35px;
+        height: 35px;
+      }
+}
+
+@media (max-width: 300px){
+    html{
+        font-size: 8px;
+    }
+}
