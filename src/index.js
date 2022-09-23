@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const passport = require('passport');
 const flash = require('connect-flash');
 const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
-
+require('./database');
+require('./passport/local-auth');
 
 //Settings
 
@@ -29,12 +31,15 @@ app.use(session({
     saveUninitialized: false
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //Global variables
 app.use((req, res, next) => {
     res.locals.succes_msg = (req.flash('succes_msg'));
     res.locals.error_msg = (req.flash('error_msg'));
+    app.locals.user = req.user;
     next();
 })
 
@@ -42,6 +47,7 @@ app.use((req, res, next) => {
 // Routes
 app.use(require('./routes/info'));
 app.use(require('./routes/usuarios'));
+app.use(require('./routes/carpetas'));
 
 
 

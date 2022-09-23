@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: rgb(24, 24, 24);
 }
@@ -15,7 +15,8 @@ html{
     --color1: rgb(250, 246, 246);
     --color2: #46d8e28c;
     --color3: #46d8e2;
-    --color4: rgb(35, 95, 163);
+    --color4: rgba(91, 159, 236, 0);
+    --color5: #46d8e242;;
 }
 
 /*
@@ -118,7 +119,7 @@ html{
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 1.5s;
+    transition: 1s;
 }
 
 .menu_estado_inicial{

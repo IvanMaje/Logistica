@@ -33,11 +33,12 @@ const validateCreate = [
                 Rol: req.body.Rol,
                 Cuit_Cuil: req.body.Cuit_Cuil,
                 Nombre: req.body.Nombre,
+                Apellido: req.body.Apellido
             }
             console.log(datos);
-            res.render('usuarios/registrar_usuario.ejs', {titulo: 'Inicio', archivo_css: 'usuarios/registrar_usuarios', usuario: req.user, datos: datos, error: err.errors[0].msg});
+            res.render('usuarios/editar_usuario.ejs', {titulo: 'Inicio', archivo_css: 'usuarios/registrar_usuarios', usuario: req.user, datos: datos, error: err.errors[0].msg, id: req.params.id});
         }
     }
 ]
 
-module.exports = { validarRegistro: validateCreate }
+module.exports = { validarEdicion: validateCreate }

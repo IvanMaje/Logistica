@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/<%-archivo_css%>.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Poppins&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
     <title><%= titulo %></title>
 </head>
 <body>
@@ -27,9 +27,9 @@
     <nav class="menu menu_estado_inicial" id="menu">
         <div class="menu_parte_superior menu_items"> <!-- Esta parte del menu la pueden ver todos sin inportar 
                                         si estan autentificados o el rol -->
-            <a class="enlace" href=""> <img class="icono" src="/img/iconos/hogar.svg" alt=""> Menu</a>
+            <a class="enlace" href="/"> <img class="icono" src="/img/iconos/hogar.svg" alt=""> Menu</a>
             <a class="enlace" href=""> <img class="icono" src="/img/iconos/nosotros.svg" alt=""> Quienes somos</a>
-            <a class="enlace" href=""> <img class="icono" src="/img/iconos/pregunta.svg" alt=""> Preguntas frecuentes</a>
+            <a class="enlace" href="/preguntas_frecuentes"> <img class="icono" src="/img/iconos/pregunta.svg" alt=""> Preguntas frecuentes</a>
             <a class="enlace" href=""> <img class="icono" src="/img/iconos/dinero.svg" alt=""> Pedir cotizacion</a>
 
         </div> 
@@ -38,30 +38,30 @@
 
             <% if(usuario == undefined){ %>  <!-- Si no hay un usuario autentificado le doy la opcion de logearse -->
 
-                <a class="enlace" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Iniciar sesion</a>
+                <a class="enlace" href="/iniciar_sesion"> <img class="icono" src="/img/iconos/persona.svg" alt=""> Iniciar sesion</a>
 
             <% }else{ %>     <!-- Si esta autentificado va a mostrarle otras opciones segun su rol -->
 
-                <span class="nombre_usuario"> <img class="icono" src="/img/iconos/identificacion.svg" alt=""> <%= usuario %></span>
+                <span class="nombre_usuario"> <img class="icono" src="/img/iconos/identificacion.svg" alt=""> <%= usuario.Nombre %></span>
 
-                <% if(rol == 'cliente'){ %>
+                <% if(usuario.Rol == 1){ %>
 
                     
-                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Ver mis cargas</a>
-                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+                    <a class="enlace" href="/mis_carpetas/<%=usuario.Id%>"> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Ver mis cargas</a>
+                    <a class="enlace" href="/cerrar_sesion"> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
 
-                <% }else if(rol == 'empleado'){ %>
+                <% }else if(usuario.Rol == '2'){ %>
                     
-                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
-                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes</a>
-                    <a class="enlace" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+                    <a class="enlace" href="/ver_carpetas/0"> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
+                    <a class="enlace" href="/ver_usuarios/1"> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes</a>
+                    <a class="enlace" href="/cerrar_sesion"> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
 
-                <% }else if(rol == 'administrador'){ %>  <!-- Administrador tiene algunas opciones mas que empleado -->
+                <% }else if(usuario.Rol == '3'){ %>  <!-- Administrador tiene algunas opciones mas que empleado -->
                             
-                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
-                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes / Empleados</a>
-                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/historial.svg" alt=""> Registro de auditoria</a>
-                    <a class="enlace enlaceAdmin" href=""> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
+                    <a class="enlace enlaceAdmin" href="/ver_carpetas/0"> <img class="icono" src="/img/iconos/hoja.svg" alt=""> Cargas</a>
+                    <a class="enlace enlaceAdmin" href="/ver_usuarios/1"> <img class="icono" src="/img/iconos/persona.svg" alt=""> Clientes / Empleados</a>
+                    <a class="enlace enlaceAdmin" href="/registro_auditoria"> <img class="icono" src="/img/iconos/historial.svg" alt=""> Registro de auditoria</a>
+                    <a class="enlace enlaceAdmin" href="/cerrar_sesion"> <img class="icono" src="/img/iconos/x.svg" alt=""> Cerrar sesion</a>
 
                 <% } %>
 
@@ -82,6 +82,4 @@
     
 </body>
 <script src="/js/menu.js"></script>
-<script src="/js/tarjetas.js"></script>
-<script src="/js/carrusel.js"></script>
 </html>

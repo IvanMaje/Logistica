@@ -4,42 +4,36 @@ const traseras = document.querySelectorAll('.cara_trasera');
 
 
 botones[0].onclick = function(){
-    console.log('hola');
     frontales[0].classList.toggle('cara_frontal_girada');
     traseras[0].classList.toggle('cara_trasera_girada');
    
 }
 
 botones[1].onclick = function(){
-    console.log('hola');
     frontales[0].classList.toggle('cara_frontal_girada');
     traseras[0].classList.toggle('cara_trasera_girada');
    
 }
 
 botones[2].onclick = function(){
-    console.log('hola');
     frontales[1].classList.toggle('cara_frontal_girada');
     traseras[1].classList.toggle('cara_trasera_girada');
    
 }
 
 botones[3].onclick = function(){
-    console.log('hola');
     frontales[1].classList.toggle('cara_frontal_girada');
     traseras[1].classList.toggle('cara_trasera_girada');
    
 }
 
 botones[4].onclick = function(){
-    console.log('hola');
     frontales[2].classList.toggle('cara_frontal_girada');
     traseras[2].classList.toggle('cara_trasera_girada');
    
 }
 
 botones[5].onclick = function(){
-    console.log('hola');
     frontales[2].classList.toggle('cara_frontal_girada');
     traseras[2].classList.toggle('cara_trasera_girada');
    

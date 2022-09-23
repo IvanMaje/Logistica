@@ -4,70 +4,57 @@
         </div>
     <% } %>
 
+
     <form action="/registrar_usuario" method="POST" class="formulario_registro">
 
-        <div class="seccion_formulario">
-            <label>Rol</label>
-            <% if(datosRegistro){ %>
-
+        <h3 class="titulo_nuevo_usuario">Nuevo usuario</h3>
         
-                <% if(datosRegistro.Rol){%>
+        <div class="seccion_formulario">
+
+            <label>Rol</label>
+            <% if(datos.Rol != ''){%>
 
                     <select name="Rol">
-                        <option value="1" <% if(datosRegistro.Rol == 1){ %> selected <% } %>>Cliente</option>
-                        <option value="2" <% if(datosRegistro.Rol == 2){ %> selected <% } %>>Empleado</option>
-                        <option value="3" <% if(datosRegistro.Rol == 3){ %> selected <% } %>>Administrador</option>
+                        <option value="1" <% if(datos.Rol == 1){ %> selected <% } %>>Cliente</option>
+                        <option value="2" <% if(datos.Rol == 2){ %> selected <% } %>>Empleado</option>
+                        <% if(usuario.Rol == 3){ %>
+                
+                            <option value="3" <% if(datos.Rol == 3){ %> selected <% } %>>Administrador</option>
+
+                        <% } %>
                     </select>
-
-                <% } %>
-
-                <div class="seccion_formulario">
-                    <label>Cuit</label>
-                    <input type="number" name="Cuit"  value="<% if(datosRegistro.Cuit){ %><%=datosRegistro.Cuit%><%}%>" > 
-                </div>
-            
-                <div class="seccion_formulario">
-                    <label>Nombre</label>
-                    <input type="text" name="Nombre"  value="<%if(datosRegistro.Nombre){%><%=datosRegistro.Nombre%><%}%>%>"> 
-                </div>
-            
-                <div class="seccion_formulario">
-                    <label>Apellido</label>
-                    <input type="text" name="Apellido"  value="<%if(datosRegistro.Apellido){%><%=datosRegistro.Apellido%><%}%>"> 
-                </div> 
-
 
             <% }else { %>
 
                 <select name="Rol">
                     <option value="1">Cliente</option>
                     <option value="2">Empleado</option>
-                    <option value="3">Administrador</option>
+                    
+                    <% if(usuario.Rol == 3){ %>
+                
+                        <option value="3">Administrador</option>
+
+                    <% } %>
+                    
                 </select>
-
-                <div class="seccion_formulario">
-                    <label>Cuit</label>
-                    <input type="number" name="Cuit"> 
-                </div>
-            
-                <div class="seccion_formulario">
-                    <label>Nombre</label>
-                    <input type="text" name="Nombre"> 
-                </div>
-            
-                <div class="seccion_formulario">
-                    <label>Apellido</label>
-                    <input type="text" name="Apellido"> 
-                </div>
-
             <% } %>
+
         </div>
 
+        <div class="seccion_formulario">
+            <label>Cuit/Cuil</label>
+            <input type="number" name="Cuit_Cuil" value="<%= datos.Cuit_Cuil %>"> 
+        </div>
+            
+        <div class="seccion_formulario">
+            <label>Nombre</label>
+            <input type="text" name="Nombre" value="<%= datos.Nombre %>"> 
+        </div>
         
 
-        <div class="botones">
-            <a href="">Cancelar</a>
-            <button type="submit">Crear</button>
+        <div class="botones_registrar">
+            <a href="/ver_usuarios/1" class="boton_registrar">Cancelar</a>
+            <button type="submit" class="boton_registrar">Crear</button>
         </div>
     </form>
 
