@@ -53,7 +53,12 @@
     </div>
 
     <div class="seccion_formulario">
-        <label>Resetear Contrasenia?</label>
+        <label>Mail</label>
+        <input type="email" name="Mail" value="<%= datos.Mail %>"> 
+    </div>
+
+    <div class="seccion_formulario">
+        <label>Resetear Clave?</label>
         
         <select name="Contrasenia">
             <option value="no" selected>No</option>
@@ -63,7 +68,7 @@
     </div>
 
     <div class="botones_registrar">
-        <a href="" class="boton_registrar">Cancelar</a>
+        <a href="/ver_usuarios/1" class="boton_registrar">Cancelar</a>
         <button type="submit" class="boton_registrar">Editar</button>
     </div>
 </form>

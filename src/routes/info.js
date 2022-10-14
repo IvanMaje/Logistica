@@ -1,6 +1,7 @@
 const express = require('express');
 const { isAuthenticated } = require('../helpers/isAuthenticated');
 const identificadorRol = require('../helpers/identificadorRol');
+const { revisarVersion } = require('../helpers/revisarVersion');
 
 const router = express.Router();
 
@@ -13,7 +14,11 @@ router.get('/', controller.mostrarInicio);
 
 router.get('/preguntas_frecuentes', controller.mostrarPreguntas);
 
-router.get('/registro_auditoria',isAuthenticated, identificadorRol.esAdministrador, controller.mostrarRegistroAuditoria);
+router.get('/cotizacion', controller.mostrarFormularioCotizacion);
+
+router.post('/cotizacion', controller.enviarConsulta);
+
+router.get('/registro_auditoria',isAuthenticated, identificadorRol.esAdministrador, revisarVersion, controller.mostrarRegistroAuditoria);
 
 
 

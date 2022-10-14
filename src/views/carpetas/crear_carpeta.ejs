@@ -9,6 +9,11 @@
     <h3 class="titulo_nueva_carpeta">Nueva carpeta</h3>
 
     <div class="seccion_formulario">
+        <label>Etiqueta</label>
+        <input type="text" name="Etiqueta" value="<%= datos.Etiqueta %>"> 
+    </div>
+
+    <div class="seccion_formulario">
         <label>Area</label>
         <input type="text" name="Area" value="<%= datos.Area %>"> 
     </div>
@@ -34,7 +39,7 @@
         <select name="Cliente">
 
             <% clientes.forEach(function(c){ %>
-                <option value="<%=c.Id%>=<%=c.Nombre%>"><%=c.Nombre%></option>
+                <option value="<%=c.Id%>=<%=c.Nombre%>=<%=c.Mail%>"><%=c.Nombre%></option>
             <% }) %>
         </select>
 

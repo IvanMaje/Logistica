@@ -9,7 +9,8 @@ class UsuarioController{
         const datos = {
             Rol: '',
             Cuit: '',
-            Nombre: ''
+            Nombre: '',
+            Mail: ''
         }
 
         const usuario = UsuarioController.verificarSiHayUsuario(req);
@@ -22,7 +23,7 @@ class UsuarioController{
         try{
 
         const usuario = UsuarioController.verificarSiHayUsuario(req);
-        const {Nombre, Apellido, Cuit_Cuil, Rol} = req.body;
+        const {Nombre, Apellido, Cuit_Cuil, Rol, Mail} = req.body;
 
         if(Rol == 3){
             if(usuario.Rol != 3){
@@ -36,7 +37,7 @@ class UsuarioController{
 
         const Version = 1;  // La version inicial es 1 (La cual indica que el usuario todavia no cambio la Contrasenia predeterminada)
 
-        const nuevoUsuario = {Cuit_Cuil, Nombre, Rol, Contrasenia, Version};
+        const nuevoUsuario = {Cuit_Cuil, Nombre, Rol, Contrasenia, Version, Mail};
 
         const existe = await UsuarioController.buscarSiExiste(Cuit_Cuil);
         if(existe){
@@ -116,7 +117,7 @@ class UsuarioController{
         try{
 
             const usuario = UsuarioController.verificarSiHayUsuario(req);
-            const {Nombre, Apellido, Cuit_Cuil, Rol, Contrasenia} = req.body;
+            const {Nombre, Apellido, Cuit_Cuil, Rol, Mail, Contrasenia} = req.body;
 
             if(Rol == 3){
                 if(usuario.Rol != 3){
@@ -129,7 +130,8 @@ class UsuarioController{
             const usuarioEditado = {
                 Nombre,
                 Rol,
-                Cuit_Cuil
+                Cuit_Cuil,
+                Mail,
             }
 
             const existe = await UsuarioController.buscarSiExiste(Cuit_Cuil);
@@ -145,6 +147,7 @@ class UsuarioController{
                 console.log('Reiniciar contrasenia');
                 const Contrasenia = await encryptPassword('123');
                 usuarioEditado.Contrasenia = Contrasenia;
+                usuarioEditado.Version = 1;
             }else{
                 usuarioEditado.Contrasenia = u[0].Contrasenia;
             }
@@ -165,6 +168,51 @@ class UsuarioController{
 
 
 
+    }
+
+
+    async eliminarUsuario(req, res){
+
+        try{
+
+            await connection.query('DELETE FROM usuarios WHERE Id = ?', [req.params.id]);
+            const descripcion = req.user.Nombre + " elimino un usuario con Cuil/Cuit: " + req.params.cuit_cuil;
+            await guardarEnRegistro(req, descripcion);
+            req.flash('succes_msg', 'Usuario eliminado');
+            res.redirect('/ver_usuarios/1');
+
+        }catch(err){
+
+            console.log(err);
+            res.send('Error');
+
+        }
+
+    }
+
+    mostrarFormularioClave(req, res){
+
+        const usuario = UsuarioController.verificarSiHayUsuario(req);
+
+        res.render('usuarios/cambio_clave.ejs', {titulo: 'Cambiar contraseña', archivo_css: 'usuarios/cambio_clave', usuario})
+    }
+
+    async cambiarClave(req, res){
+
+        const usuario = UsuarioController.verificarSiHayUsuario(req);
+
+        const {Clave} = req.body;
+        const ClaveEncriptada = await encryptPassword(Clave);
+        const usuarioEditado = {
+            Version: 2,
+            Contrasenia: ClaveEncriptada
+        }
+
+        await connection.query('UPDATE usuarios set ? WHERE Id = ?', [usuarioEditado, req.user.Id]);
+        console.log('Clave cambiada')
+        req.flash('succes_msg', 'ClaveActualizada');
+
+        res.redirect('/');
     }
 
 

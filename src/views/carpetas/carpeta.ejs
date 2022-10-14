@@ -9,6 +9,13 @@
 
     <div class="seccion_carpeta">
 
+        <label>Etiqueta:</label> 
+        <input type="text" value="<%=carpeta.Etiqueta%>" name="Etiqueta">
+        
+    </div>
+
+    <div class="seccion_carpeta">
+
         <label>Area:</label> 
         <input type="text" value="<%=carpeta.Area%>" name="Area">
         
@@ -96,7 +103,7 @@
 
     <h3 class="titulo_estados">Estados</h3>
 
-    <form action="/crear_estado/<%=carpeta.Id%>/<%=carpeta.Num%>" class="formulario_estado" method="POST">
+    <form action="/crear_estado/<%=carpeta.Id%>/<%=carpeta.Num%>/<%=carpeta.MailCliente%>/<%=carpeta.Etiqueta%>" class="formulario_estado" method="POST">
         <input type="text" name="Titulo">
         <textarea name="Descripcion" cols="30" rows="10"></textarea>
         <button type="submit" class="boton_estado">Agregar estado</button>

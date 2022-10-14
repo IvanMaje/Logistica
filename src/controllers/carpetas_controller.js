@@ -1,6 +1,7 @@
 const { application } = require('express');
 const connection = require('../database');
 const { guardarEnRegistro } = require('../helpers/registroAuditoria');
+const nodemailer = require('nodemailer');
 
 class CarpetasController{
 
@@ -31,21 +32,24 @@ class CarpetasController{
 
             const usuario = CarpetasController.verificarSiHayUsuario(req);
 
-            const {Area, Num, Sector, HBL_HAWB, Cliente, EntidadExterior, Transportista, Origen, Destino, FechaSalida, FechaLlegada} = req.body;
+            const {Area, Etiqueta, Num, Sector, HBL_HAWB, Cliente, EntidadExterior, Transportista, Origen, Destino, FechaSalida, FechaLlegada} = req.body;
 
             let arr = Cliente.split("=");
             const IdCliente = arr[0];
             const NombreCliente = arr[1];
+            const MailCliente = arr[2];
             const IdCustomer = usuario.Id;
             const NombreCustomer = usuario.Nombre;
 
             const nuevaCarpeta = {
                 Area,
                 Num,
+                Etiqueta,
                 Sector,
                 HBL_HAWB,
                 NombreCliente,
                 IdCliente,
+                MailCliente,
                 NombreCustomer,
                 IdCustomer,
                 EntidadExterior, 
@@ -60,8 +64,9 @@ class CarpetasController{
 
             const descripcion = req.user.Nombre + " creo la carpeta num " + nuevaCarpeta.Num + " para el cliente " + nuevaCarpeta.NombreCliente;
             await guardarEnRegistro(req, descripcion)
+            req.flash('succes_msg', 'Carpeta creada');
             
-            res.send("Ok");
+            res.redirect("/ver_carpetas/0");
 
         }catch(err){
             console.log(err);
@@ -73,7 +78,6 @@ class CarpetasController{
         try{
             const usuario = CarpetasController.verificarSiHayUsuario(req);
             const carpetas = await CarpetasController.obtenerCarpetas(req);
-            console.log(carpetas);
             let filtro = undefined;
 
             if(req.params.filtro){
@@ -129,8 +133,26 @@ class CarpetasController{
 
         await connection.query('INSERT INTO estados set ?', [nuevoEstado]);
 
-        const descripcion = req.user.Nombre + "Actualizo el estado de la carpeta " + req.params.num + " con el titular '" + nuevoEstado.Titulo + "'";
+        const descripcion = req.user.Nombre + " actualizo el estado de la carpeta " + req.params.num + " con el titular '" + nuevoEstado.Titulo + "'";
         await guardarEnRegistro(req, descripcion)
+
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true, 
+            auth: {
+              user: '', 
+              pass: '', 
+            },
+          });
+
+        let info = await transporter.sendMail({
+            from: '"Actualizacion" <Estado>', 
+            to: req.params.mail, 
+            subject: "Actualizacion", 
+            text: "Se subio una actualizacion de su carpeta \n" + 
+                    req.params.etiqueta + "\n" + Titulo + "\n" + Descripcion, 
+        });
 
         req.flash('succes_msg', 'Estado creado');
         res.redirect('/ver_carpeta/' + req.params.id);
@@ -174,6 +196,69 @@ class CarpetasController{
 
         res.render('carpetas/mi_carpeta.ejs', {titulo: 'Carpeta', archivo_css: 'carpetas/mi_carpeta', usuario, num: req.params.num, estados})
     }
+
+
+    async editarCarpeta(req, res){
+        try{
+            
+            const {Area, Etiqueta, Num, Sector, HBL_HAWB, Cliente, EntidadExterior, Transportista, Origen, Destino, FechaSalida, FechaLlegada} = req.body;
+
+            let arr = Cliente.split("=");
+            const IdCliente = arr[0];
+            const NombreCliente = arr[1];
+
+            const carpeta = {
+                Area,
+                Num,
+                Etiqueta,
+                Sector,
+                HBL_HAWB,
+                NombreCliente,
+                IdCliente,
+                EntidadExterior, 
+                Transportista, 
+                Origen, 
+                Destino, 
+                FechaSalida,
+                FechaLlegada
+            }
+
+            await connection.query('UPDATE carpetas set ? WHERE Id = ?', [carpeta, req.params.id]);
+
+            const descripcion = req.user.Nombre + " edito carpeta num: " + Num;
+            await guardarEnRegistro(req, descripcion);
+            req.flash('succes_msg', 'Carpeta editada');
+
+            res.redirect('/ver_carpeta/' + req.params.id)
+
+        }catch(err){
+
+            console.log(err);
+            res.send('Error');
+
+        }
+    }
+
+
+    async eliminarCarpeta(req, res){
+
+        try{
+
+            const c = await connection.query('DELETE FROM carpetas WHERE Id = ?', [req.params.id]);
+            const descripcion = req.user.Nombre + " elimino carpeta num: " + req.params.num;
+            await guardarEnRegistro(req, descripcion);
+            req.flash('succes_msg', 'Carpeta eliminada');
+            res.redirect('/ver_carpetas/0');
+
+        }catch(err){
+
+            console.log(err);
+            res.send('Error');
+            
+        }
+
+    }
+
 
 
 

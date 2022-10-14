@@ -42,7 +42,7 @@
             <div class="confirmar_borrado">
                 <span>Seguro que desea eliminar el usuario?</span>
                 <button class="confirmar_borrado_boton" onclick="ocultarConfirmacionBorrado(<%= i %>)"><img src="/img/iconos/x.svg" alt=""></button>
-                <a href="/borrar_usuario/<%=u.Id%>" class="confirmar_borrado_boton"><img src="/img/iconos/tilde.svg" alt=""></a>
+                <a href="/eliminar_usuario/<%=u.Id%>/<%=u.Cuit_Cuil%>" class="confirmar_borrado_boton"><img src="/img/iconos/tilde.svg" alt=""></a>
             </div>
             <% i++ %>
         <% }) %>

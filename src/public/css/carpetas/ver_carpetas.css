@@ -181,7 +181,8 @@
     .carpetas_tabla{
         width: 100vw;
         overflow-x: scroll;
+        grid-template-columns: repeat(4, 32%) 50px 50px;
+       
     }
-
 }
 

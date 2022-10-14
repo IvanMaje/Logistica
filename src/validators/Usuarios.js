@@ -17,6 +17,12 @@ const validateCreate = [
     .isLength({ min: 11, max: 11 })
     .withMessage('El cuit/cuil debe tener 11 caracteres'),
 
+    check('Mail')
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Debe ingresar mail'),
+
     check('Nombre')
     .exists()
     .not()
