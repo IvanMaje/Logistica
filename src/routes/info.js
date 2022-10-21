@@ -18,6 +18,8 @@ router.get('/cotizacion', controller.mostrarFormularioCotizacion);
 
 router.post('/cotizacion', controller.enviarConsulta);
 
+router.get('/contacto', controller.mostrarContacto);
+
 router.get('/registro_auditoria',isAuthenticated, identificadorRol.esAdministrador, revisarVersion, controller.mostrarRegistroAuditoria);
 
 

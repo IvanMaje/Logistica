@@ -147,7 +147,7 @@ class CarpetasController{
           });
 
         let info = await transporter.sendMail({
-            from: '"Actualizacion" <Estado>', 
+            from: '"Actualizacion" <>', 
             to: req.params.mail, 
             subject: "Actualizacion", 
             text: "Se subio una actualizacion de su carpeta \n" + 

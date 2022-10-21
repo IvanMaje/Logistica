@@ -1,3 +1,9 @@
+
+
+.contenido_estado_inicial{
+  background-color: var(--color1);
+}
+
 .imagen_containers{
     position: relative;
     width: 100%;
@@ -16,7 +22,7 @@
     width: 150%;
     left: 0px;
     height: 300px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color1);
     transform: rotate(-6.5deg);
     transform-origin: 0;
   }
@@ -33,9 +39,10 @@
   }
 
   .introduccion .titulo{
-    font-size: 5rem;
-    color: black;
+    width: 20vw;
+    height: 10vw;
     margin-right: 5%;
+    margin-top: -30px;
   }
 
   .introduccion .frase{
@@ -129,11 +136,15 @@
 }
 
 .servicios .servicios_section .carrusel_transporte_nacional{
-  width: 500%;
+  width: 300%;
 }
 
 .servicios .servicios_section .carrusel_transporte_internacional{
   width: 600%;
+}
+
+.servicios .servicios_section .carrusel_fletes{
+  width: 200%;
 }
 
 .servicios .servicios_section .carrusel_depositos{
@@ -340,10 +351,7 @@
         height: 50vh;
     }
 
-    .introduccion .titulo{
-        font-size: 4rem;
-    }
-    
+
     .introduccion .frase{
         font-size: 2rem;
     }
@@ -379,7 +387,9 @@
     }
 
     .introduccion .titulo{
-        font-size: 3rem;
+        width: 40vw;
+        height: 20vw;
+        margin-top: 0;
     }
     
     .introduccion .frase{

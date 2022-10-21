@@ -7,13 +7,19 @@ class InfoController{
 
     mostrarInicio(req, res){
         const usuario = InfoController.verificarSiHayUsuario(req);
-        res.render('info/index.ejs', {titulo: 'Inicio', archivo_css: 'info/index', usuario: usuario})
+        res.render('info/index.ejs', {titulo: 'JKN Cargo', archivo_css: 'info/index', usuario: usuario})
     }
 
     mostrarPreguntas(req, res){
         const usuario = InfoController.verificarSiHayUsuario(req);
 
-        res.render('info/preguntas.ejs', {titulo: 'Inicio', archivo_css: 'info/preguntas', usuario: usuario})
+        res.render('info/preguntas.ejs', {titulo: 'Preguntas', archivo_css: 'info/preguntas', usuario: usuario})
+    }
+
+    mostrarContacto(req, res){
+        const usuario = InfoController.verificarSiHayUsuario(req);
+
+        res.render('info/contacto.ejs', {titulo: 'Contacto', archivo_css: 'info/contacto', usuario: usuario})
     }
 
     mostrarFormularioCotizacion(req, res){
@@ -27,22 +33,23 @@ class InfoController{
             const usuario = InfoController.verificarSiHayUsuario(req);
 
             const {Mail, Nombre, Razon_Social,
-                   Tipo_m, Tipo_e, Origen,
-                   Destino, Peso, Contenedor} = req.body;
+                   Tipo_m, Imo, Origen,
+                   Destino, Peso, Metros, Contenedor} = req.body;
 
             const texto = "Pedido de cotizacion: \n Mail: " +
                            Mail + "\n Nombre:" + Nombre + 
                            "\n Razon social: " + Razon_Social + 
-                           "\n Tipo de mercaderia: " + Tipo_m + 
-                           "\n Tipo de embalaje: " + Tipo_e + 
+                           "\n Mercaderia: " + Tipo_m + 
+                           "\n Imo: " + Imo +
                            "\n Origen: " + Origen + "\n Destino: " + 
-                           Destino + "\n Peso: " + Peso + "\n Contenedor: " +
-                           Contenedor;
+                           Destino + "\n Peso: " + Peso +
+                           "\n Metros cubicos: " + Metros +
+                            "\n Contenedor: " + Contenedor;
 
             console.log(texto);
 
             let transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
+                host: "smtp.zoho.com",
                 port: 465,
                 secure: true, 
                 auth: {
@@ -52,7 +59,7 @@ class InfoController{
               });
 
             let info = await transporter.sendMail({
-                from: '"Cotizacion" <Cotizacion>', 
+                from: '"Cotizacion" <>', 
                 to: "", 
                 subject: "Pedido de cotizacion", 
                 text: texto, 

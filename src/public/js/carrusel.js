@@ -41,6 +41,18 @@ botonIzquierdo[2].onclick = function(){ izquierda(2, carruselItems2, ".items_2")
 botonDerecho[2].onclick = function(){ derecha(2, ".items_2")}
 
 
+
+/*
+  Cuarto carrusel
+*/
+let carruselItems3 = document.querySelectorAll(".items_3");
+let ultimoItem3 = carruselItems3[carruselItems3.length - 1];
+carrusel[3].insertAdjacentElement('afterbegin', ultimoItem3);
+
+botonIzquierdo[3].onclick = function(){ izquierda(3, carruselItems3, ".items_3") }
+botonDerecho[3].onclick = function(){ derecha(3, ".items_3")}
+
+
 /*
     Funciones para los botones del carrusel
 */
@@ -51,7 +63,6 @@ function izquierda(n, items, nombreListaItems) {
     ultimoItem = document.querySelectorAll(nombreListaItems)[items.length - 1];
     carrusel[n].style.transition = "all 0.5s";
     carrusel[n].style.marginLeft = "0";
-    console.log('hola');
     setTimeout(function () {
         carrusel[n].style.transition = "none";
         carrusel[n].insertAdjacentElement('afterbegin', ultimoItem);
@@ -64,7 +75,6 @@ function derecha(n, nombreListaItems) {
     let primerItem = document.querySelectorAll(nombreListaItems)[0];
     carrusel[n].style.transition = "all 0.5s";
     carrusel[n].style.marginLeft = "-200%";
-    console.log('hola');
     setTimeout(function () {
         carrusel[n].style.transition = "none";
         carrusel[n].insertAdjacentElement('beforeend', primerItem);
