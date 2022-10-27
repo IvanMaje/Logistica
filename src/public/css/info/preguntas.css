@@ -95,7 +95,7 @@
     
     .tarjeta{
         width: 90%;
-        height: 350px;
+        height: 250px;
     }
 
   } 
@@ -103,7 +103,7 @@
   @media (max-width: 350px){
     
     .tarjeta{
-        height: 450px;
+        height: 250px;
     }
 
   } 

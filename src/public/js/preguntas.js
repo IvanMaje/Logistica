@@ -39,26 +39,3 @@ botones[5].onclick = function(){
    
 }
 
-botones[6].onclick = function(){
-    frontales[3].classList.toggle('cara_frontal_girada');
-    traseras[3].classList.toggle('cara_trasera_girada');
-   
-}
-
-botones[7].onclick = function(){
-    frontales[3].classList.toggle('cara_frontal_girada');
-    traseras[3].classList.toggle('cara_trasera_girada');
-   
-}
-
-botones[8].onclick = function(){
-    frontales[4].classList.toggle('cara_frontal_girada');
-    traseras[4].classList.toggle('cara_trasera_girada');
-   
-}
-
-botones[9].onclick = function(){
-    frontales[5].classList.toggle('cara_frontal_girada');
-    traseras[5].classList.toggle('cara_trasera_girada');
-   
-}

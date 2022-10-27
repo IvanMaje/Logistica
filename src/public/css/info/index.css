@@ -8,9 +8,9 @@
     position: relative;
     width: 100%;
     height: 300px;
-    background-image: url('/img/1.jpg');
+    background-image: url('/img/3.jpg');
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
     border: none;
 }
 
@@ -30,6 +30,7 @@
   .introduccion{
     width: 100% ;
     height: calc(100vh - 350px);
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -103,6 +104,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 20;
 }
 
 .servicios .servicios_section{
@@ -144,11 +147,11 @@
 }
 
 .servicios .servicios_section .carrusel_fletes{
-  width: 200%;
+  width: 300%;
 }
 
 .servicios .servicios_section .carrusel_depositos{
-  width: 300%;
+  width: 400%;
 }
 
 .carrusel .carrusel_item{
